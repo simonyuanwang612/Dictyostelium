@@ -1,0 +1,11 @@
+run_accession condition sample
+Vegetative_rep1  V   A
+Vegetative_rep2  V   B
+Streaming_rep1  S   A
+Streaming_rep2  S   B
+Mound_rep1  M   A
+Mound_rep2 M   B
+Fruiting_rep1  F   A
+Fruiting_rep2  F   B
+
+
