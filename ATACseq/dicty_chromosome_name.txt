@@ -1,0 +1,11 @@
+>DDB0169550 |Chromosomal Sequence| Chromosome: M position 1 to 55564
+>DDB0215018 |Chromosomal Sequence| Chromosome: 2F position 1 to 161967
+>DDB0215151 |Chromosomal Sequence| Chromosome: 3F position 1 to 16660
+>DDB0220052 |Chromosomal Sequence| Chromosome: BF position 1 to 75732
+>DDB0232428 |Chromosomal Sequence| Chromosome: 1 position 1 to 4923596
+>DDB0232429 |Chromosomal Sequence| Chromosome: 2 position 1 to 8484197
+>DDB0232430 |Chromosomal Sequence| Chromosome: 3 position 1 to 6357299
+>DDB0232431 |Chromosomal Sequence| Chromosome: 4 position 1 to 5450249
+>DDB0232432 |Chromosomal Sequence| Chromosome: 5 position 1 to 5125352
+>DDB0232433 |Chromosomal Sequence| Chromosome: 6 position 1 to 3602379
+>DDB0237465 |Chromosomal Sequence| Chromosome: R position 1 to 85150

@@ -1,0 +1,26 @@
+#1. fastqc
+bsub -q short -W 2:00 fastqc ${output}.fastq.gz -o FASTQC_dir
+
+#2. trim 8 bases from each end of the sequence
+bsub -q short -W 2:00 cutadapt -u 8 -u -8 ${output}.fastq.gz -o ${output}.trimmed.fastq.gz
+
+#3. mapping use bowtie2
+ bsub -q short -W 2:00 -O ${output}.maplog bowtie2 -x dicty_idx -U ${output}.trimmed.fastq.gz -S ${output}.sam
+ 
+#4. convert sam to bam
+bsub -q short -W 2:00 samtools view -bS ${output}.sam -o ${output}.bam
+
+#5. sorting
+bsub -q short -W 2:00 samtools sort -o ${output}.sorted.bam ${output}.bam
+
+#6. Picard to deduplication
+java -jar $PICARD/picard-2.8.0.jar MarkDuplicates INPUT=${output}.sorted.bam OUTPUT=${output}.sorted.nodup.bam METRICS_FILE=${output}.nodup.metrics.txt ASSUME_SORTED=true REMOVE_DUPLICATES=true VALIDATION_STRINGENCY=LENIENT
+
+#7. Remove mitochondria
+sbatch -n 4 -p short -t 0-08:30:00 --mem=2000M --wrap="samtools view -h 171031-16-VA-10E6.sorted.nodup.bam | ~/scripts/ATAC-seq/atacseq/removeChrom.py - - DDB0169550 | samtools view -b - > 171031-16-VA-10E6.sorted.nodup.nomito.bam"
+
+#8. macs2 call peaks
+sbatch -n 4 -p short -t 0-08:30:00 --mem=2000M --wrap="macs2 callpeak -t 171031-16-VA-10E6.sorted.nodup.nomito.bam -f BAM -n 16-VB -g 3e7 --keep-dup all --outdir 16-VB-outdir"
+
+
+
